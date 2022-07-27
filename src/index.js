@@ -7,7 +7,7 @@ import "./styles/index.css";
 import "./styles/fonts.css";
 
 const client = new ApolloClient({
-  uri: "https://api-us-west-2.hygraph.com/v2/cl63oa4b16x5m01uk4uwv1dra/master",
+  uri: process.env.REACT_APP_GRAPHCMS_URI,
   cache: new InMemoryCache(),
 });
 
