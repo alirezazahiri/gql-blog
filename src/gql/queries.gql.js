@@ -7,11 +7,25 @@ export const GET_BLOGS_INFO = gql`
       title
       slug
       author {
+        name
         avatar {
           url
         }
       }
       coverImage {
+        url
+      }
+    }
+  }
+`;
+
+export const GET_AUTHORS_INFO = gql`
+  query {
+    authors {
+      id
+      name
+      slug
+      avatar {
         url
       }
     }
