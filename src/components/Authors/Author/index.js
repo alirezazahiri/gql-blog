@@ -5,6 +5,7 @@ import { GET_AUTHOR_BY_SLUG } from "../../../gql/queries.gql";
 import { Avatar, Container, Typography, Grid } from "@mui/material";
 import sanitize from "sanitize-html";
 import CardEL from "../../../common/CardEL";
+import Loader from "../../../common/Loader";
 
 const Author = () => {
   const { slug } = useParams();
@@ -15,11 +16,13 @@ const Author = () => {
     },
   });
 
-  if (loading) return <h4>Loading...</h4>;
+  if (loading) return <Loader />;
   if (error) return <h4>ERROR</h4>;
 
-  const { author } = data;
-  console.log(author);
+  const {
+    author: { name, proficiency, avatar, description, posts },
+  } = data;
+
   return (
     <Container maxWidth="lg">
       <Grid container mt={10}>
@@ -30,28 +33,28 @@ const Author = () => {
           flexDirection="column"
           alignItems="center"
         >
-          <Avatar src={author.avatar.url} sx={{ width: 250, height: 250 }} />
+          <Avatar src={avatar.url} sx={{ width: 250, height: 250 }} />
           <Typography component="h3" variant="h5" fontWeight={700} mt={4}>
-            {author.name}
+            {name}
           </Typography>
           <Typography component="p" variuant="h5" color="text.secondary" mt={2}>
-            {author.proficiency}
+            {proficiency}
           </Typography>
         </Grid>
         <Grid item xs={12} mt={5}>
           <div
             dangerouslySetInnerHTML={{
-              __html: sanitize(author.description.html),
+              __html: sanitize(description.html),
             }}
           ></div>
         </Grid>
         <Grid item xs={12} mt={6}>
           <Typography component="h3" variant="h5" fontWeight={700}>
-            مقالات {author.name}
+            مقالات {name}
           </Typography>
         </Grid>
         <Grid container mt={2} spacing={2}>
-          {author.posts.map(({ id, title, slug, coverImage }) => (
+          {posts.map(({ id, title, slug, coverImage }) => (
             <Grid item xs={12} sm={6} md={4} key={id}>
               <CardEL title={title} slug={slug} coverImage={coverImage} />
             </Grid>
