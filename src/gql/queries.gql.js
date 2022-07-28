@@ -19,6 +19,27 @@ export const GET_BLOGS_INFO = gql`
   }
 `;
 
+export const GET_BLOG_BY_SLUG = gql`
+  query getBlogBySlug($slug: String!) {
+    post(where: { slug: $slug }) {
+      title
+      author {
+        avatar {
+          url
+        }
+        name
+        proficiency
+      }
+      content {
+        html
+      }
+      coverImage {
+        url
+      }
+    }
+  }
+`;
+
 export const GET_AUTHORS_INFO = gql`
   query {
     authors {
