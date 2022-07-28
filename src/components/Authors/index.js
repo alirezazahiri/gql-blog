@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client/react";
 import { Avatar, Divider, Grid, Typography } from "@mui/material";
 import { GET_AUTHORS_INFO } from "../../gql/queries.gql";
@@ -22,8 +23,8 @@ const Authors = () => {
       {authors.map((author, index) => (
         <React.Fragment key={author.id}>
           <Grid item xs={12} padding={2}>
-            <a
-              href={`/authors/${author.slug}`}
+            <Link
+              to={`/authors/${author.slug}`}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -34,7 +35,7 @@ const Authors = () => {
               <Typography component="p" variant="p" color="text.secondary">
                 {author.name}
               </Typography>
-            </a>
+            </Link>
           </Grid>
           {index < authors.length - 1 && (
             <Grid item xs={12}>

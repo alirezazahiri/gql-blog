@@ -7,9 +7,9 @@ import {
   CardHeader,
   CardMedia,
   Divider,
-  Link,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import React from "react";
 
 const CardEL = ({ title, slug, coverImage, author }) => {
@@ -20,19 +20,21 @@ const CardEL = ({ title, slug, coverImage, author }) => {
         borderRadius: 4,
       }}
     >
-      <CardHeader
-        avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
-        title={
-          <Typography
-            component="p"
-            variant="p"
-            color="text.secondary"
-            fontWeight={700}
-          >
-            {author.name}
-          </Typography>
-        }
-      />
+      {author && (
+        <CardHeader
+          avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
+          title={
+            <Typography
+              component="p"
+              variant="p"
+              color="text.secondary"
+              fontWeight={700}
+            >
+              {author.name}
+            </Typography>
+          }
+        />
+      )}
       <CardMedia
         component="img"
         height="194"
