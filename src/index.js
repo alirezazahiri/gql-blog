@@ -6,6 +6,8 @@ import theme from "./mui/theme";
 import App from "./App";
 import "./styles/index.css";
 import "./styles/fonts.css";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHCMS_URI,

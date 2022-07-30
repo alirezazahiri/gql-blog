@@ -6,6 +6,8 @@ import { Avatar, Container, Typography, Grid, Box } from "@mui/material";
 import sanitize from "sanitize-html";
 import Loader from "../../../common/Loader";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import CommentForm from "../../Commets/CommentForm";
+import Comments from "../../Commets";
 
 const Blog = () => {
   const { slug } = useParams();
@@ -23,7 +25,7 @@ const Blog = () => {
   const {
     post: { title, author, content, coverImage },
   } = data;
-  
+
   return (
     <Container maxWidth="lg">
       <Grid container>
@@ -68,6 +70,12 @@ const Blog = () => {
             dangerouslySetInnerHTML={{ __html: sanitize(content.html) }}
           ></div>
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <CommentForm slug={slug} />
+      </Grid>
+      <Grid item xs={12}>
+        <Comments slug={slug} />
       </Grid>
     </Container>
   );
